@@ -143,31 +143,42 @@
     </div>
 
     <script>
-        let currentImage = 1;
-
+        let currentImage = parseInt(localStorage.getItem('lastImagePage')) || 1; // 从 localStorage 获取上次的页码，并确保它是一个整数
+    
         function showImage(imageNumber) {
+            // 确保 imageNumber 在有效范围内
+            if (imageNumber !== 1 && imageNumber !== 2) {
+                imageNumber = 1; // 如果不是有效页码，默认设置为第一页
+            }
+    
+            // 显示相应的图片和调整按钮显示
             document.getElementById('image1').style.display = (imageNumber === 1) ? 'block' : 'none';
             document.getElementById('image2').style.display = (imageNumber === 2) ? 'block' : 'none';
             document.getElementById('prevButton').style.display = (imageNumber === 1) ? 'none' : 'inline-block';
             document.getElementById('nextButton').style.display = (imageNumber === 2) ? 'none' : 'inline-block';
+    
+            // 更新 localStorage 中的页码
+            localStorage.setItem('lastImagePage', imageNumber);
         }
-
+    
         function nextImage() {
             if (currentImage === 1) {
                 currentImage = 2;
             }
             showImage(currentImage);
         }
-
+    
         function prevImage() {
             if (currentImage === 2) {
                 currentImage = 1;
             }
             showImage(currentImage);
         }
-
-        // 初始顯示第一張圖片
+    
+        // 初始显示上次存储的页面或第一页
         showImage(currentImage);
     </script>
+    
+    
 </body>
 </html>
