@@ -15,14 +15,14 @@
         .container {
             position: relative;
             max-width: 100%;
-            width: 100%;  /* 確保容器寬度為100% */
+            width: 100%;
         }
 
         img {
             width: 100%;
-            height: auto;  /* 高度自動調整，保持比例 */
-            display: block;  /* 去除底部可能的空白間隙 */
-            object-fit: contain;  /* 確保圖片完整顯示 */
+            height: auto;
+            display: block;
+            object-fit: contain;
         }
 
         .button {
@@ -43,28 +43,18 @@
             width: 25.36%;
             height: 7.6%;
         }
-
-        /* Media Queries */
-        /* @media screen and (max-width: 600px) {
-            .button1, .button2 {
-                width: 30%;
-                height: 10%;
-            }
-        }
-
-        @media screen and (min-width: 601px) and (max-width: 1024px) {
-            .button1, .button2 {
-                width: 25%;
-                height: 9%;
-            }
-        } */
     </style>
+    <script>
+        function setPageToOne() {
+            localStorage.setItem('lastImagePage', '1'); // 设置 localStorage 的值为 1
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <img src="./image/2024-HAPA 樂圃飄香聯合演奏會 網站首頁-2024-09-03_page1.jpg" alt="2024樂團飄香口琴聯合音樂會">
-        <a href="program.html" class="button button1"></a>
-        <a href="band-intro.html" class="button button2"></a>
+        <a href="program.html" class="button button1" onclick="setPageToOne()">節目單</a>
+        <a href="band-intro.html" class="button button2">樂團介紹</a>
     </div>
 </body>
 </html>
