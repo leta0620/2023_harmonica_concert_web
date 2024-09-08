@@ -21,8 +21,12 @@
         img {
             width: 100%;
             height: auto;
-            display: block;
+            display: none;
             object-fit: contain;
+        }
+
+        #image1 {
+            display: block;
         }
 
         .button {
@@ -31,30 +35,82 @@
         }
 
         .button1 {
-            top: 66.9%;
-            left: 21.95%;
-            width: 25.36%;
+            top: 63.55%;
+            left: 9.3%;
+            width: 24.2%;
             height: 7.6%;
         }
 
         .button2 {
-            top: 66.9%;
-            left: 59%;
-            width: 25.36%;
+            top: 63.55%;
+            left: 38.3%;
+            width: 24.2%;
             height: 7.6%;
+        }
+
+        .button3 {
+            top: 63.55%;
+            left: 65.8%;
+            width: 24.2%;
+            height: 7.6%;
+        }
+
+        /* 切換按鈕樣式 */
+        .switch-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
         }
     </style>
     <script>
+        let currentImage_i = 1;
         function setPageToOne() {
             localStorage.setItem('lastImagePage', '1'); // 设置 localStorage 的值为 1
+        }
+
+        function showImage(imageNumber_i) {
+            // 顯示或隱藏圖片
+            document.getElementById('image1').style.display = (imageNumber_i === 1) ? 'block' : 'none';
+            document.getElementById('image2').style.display = (imageNumber_i === 2) ? 'block' : 'none';
+
+            // 根據當前圖片變更按鈕文本
+            document.getElementById('toggleButton').textContent = (imageNumber_i === 1) ? '下一頁' : '上一頁';
+
+            // 更新當前顯示的圖片
+            currentImage_i = imageNumber_i;
+        }
+
+        function toggleImage() {
+            // 切換到另一張圖片
+            if (currentImage_i === 1) {
+                showImage(2);  // 切換到第二張圖片
+            } else {
+                showImage(1);  // 切換回第一張圖片
+            }
         }
     </script>
 </head>
 <body>
     <div class="container">
-        <img src="./image/2024-HAPA 樂圃飄香聯合演奏會 網站首頁-2024-09-03_page1.jpg" alt="2024樂團飄香口琴聯合音樂會">
-        <a href="program.html" class="button button1" onclick="setPageToOne()">節目單</a>
-        <a href="band-intro.html" class="button button2">樂團介紹</a>
+        <!-- 第一張圖片 -->
+        <img id="image1" src="./image/音樂會首頁1.PNG" alt="2024樂團飄香口琴聯合音樂會">
+        <!-- 第一張圖片上的按鈕 -->
+        <a href="program.html" class="button button1" onclick="setPageToOne()"></a>
+        <a href="band-intro.html" class="button button2"></a>
+        <a href="sponsors.html" class="button button3"></a>
     </div>
+
+    <!-- 第二張圖片，無按鈕 -->
+    <div class="container">
+        <img id="image2" src="./image/音樂會首頁2.PNG" alt="2024樂團飄香口琴聯合音樂會第二頁">
+    </div>
+
+    <!-- 切換按鈕 -->
+    <button id="toggleButton" class="switch-button" onclick="toggleImage()">下一頁</button>
 </body>
 </html>
